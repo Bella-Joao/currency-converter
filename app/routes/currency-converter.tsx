@@ -1,3 +1,4 @@
+//react component aanmaken "CurrencyConverter"
 export default function CurrencyConverter() {
   return (
     <main className="p-8">
