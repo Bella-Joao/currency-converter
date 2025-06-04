@@ -1,14 +1,18 @@
 import { Link } from "@remix-run/react";
 
-export default function Index() {
+export default function Index() 
+{
   return (
-   <div className="min-h-screen flex flex-col bg-black text-white">
+   <div className="min-h-screen flex flex-col bg-[#05051F] text-white">
+
       {/* header */}
-      <header className="flex justify-between items-center px-6 py-4 bg-[#111827] shadow">
+      <header className="flex justify-between items-center px-6 py-4 bg-[#111827]shadow">
         <div className="text-xl font-bold text-blue-600">Mechhive</div>
         <nav className="flex items-center gap-6">
+
           <a href="https://skine.com" target="_blank" rel="noreferrer" className="text-sm hover:underline">Skine</a>
           <a href="https://rewarble.com" target="_blank" rel="noreferrer" className="text-sm hover:underline">Rewarble</a>
+          
           <Link
             to="/sign-in"
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
@@ -29,6 +33,7 @@ export default function Index() {
 
         {/* skine / rewarble */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+
         {/* skine */}
         <div className="p-6 rounded-xl bg-[#0f172a] text-white shadow-[inset_0_0_10px_#0ea5e9] border border-sky-500 hover:shadow-blue-500/40 hover:ring-2 hover:ring-blue-400 transition-all">
           <h2 className="text-2xl font-semibold text-sky-400 mb-2">Wat is Skine?</h2>
@@ -55,8 +60,8 @@ export default function Index() {
         </p>
       </main>
 
-      <footer className="bg-black text-gray-500 text-center text-sm py-6">
-      © {new Date().getFullYear()} Mechhive - by João Gessel
+      <footer className="bg-[#05051F] text-gray-500 text-center text-sm py-6">
+        © {new Date().getFullYear()} Mechhive - by João Gessel
       </footer>
 
     </div>

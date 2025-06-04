@@ -1,4 +1,5 @@
-import {
+import 
+{
   Links,
   Meta,
   Outlet,
@@ -9,7 +10,8 @@ import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
 
-export const links: LinksFunction = () => [
+export const links: LinksFunction = () => 
+  [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -22,7 +24,8 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: { children: React.ReactNode }) 
+{
   return (
     <html lang="en">
       <head>
@@ -31,7 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body  className="min-h-screen flex flex-col bg-black text-white overflow-x-hidden">
+      <body  className="min-h-screen flex flex-col bg-[#05051F] overflow-x-hidden">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -40,6 +43,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
+export default function App() 
+{
   return <Outlet />;
 }
