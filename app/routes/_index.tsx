@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
+   <div className="min-h-screen flex flex-col bg-black text-white">
       {/* header */}
       <header className="flex justify-between items-center px-6 py-4 bg-[#111827] shadow">
         <div className="text-xl font-bold text-blue-600">Mechhive</div>
@@ -19,7 +19,8 @@ export default function Index() {
       </header>
 
       {/* intro */}
-      <main className="max-w-4xl mx-auto p-8 text-center">
+     <main className="flex-grow max-w-4xl mx-auto p-8 text-center">
+
         <h1 className="text-4xl font-bold mb-4 text-blue-700">Welkom bij de Currency Converter</h1>
         <p className="text-lg mb-10 text-gray-600">
           Reken razendsnel bedragen om naar andere valuta met actuele wisselkoersen. Toegang tot de converter is alleen mogelijk na inloggen.
@@ -54,7 +55,7 @@ export default function Index() {
         </p>
       </main>
 
-      <footer className="bg-black text-gray-500 text-center text-sm py-6 mt-12">
+      <footer className="bg-black text-gray-500 text-center text-sm py-6">
       © {new Date().getFullYear()} Mechhive - by João Gessel
       </footer>
 
