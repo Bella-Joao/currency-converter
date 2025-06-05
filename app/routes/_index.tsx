@@ -22,6 +22,7 @@ export default function Index()
         </nav>
       </header>
 
+
       {/* intro */}
      <main className="flex-grow max-w-4xl mx-auto p-8 text-center">
 
@@ -42,6 +43,7 @@ export default function Index()
           </p>
         </div>
 
+
         {/* rewarble */}
         <div className="p-6 rounded-xl bg-[#0f172a] text-white shadow-[inset_0_0_10px_#a855f7] border border-purple-500  hover:shadow-purple-500/40 hover:ring-2 hover:ring-purple-400 transition-all">
           <h2 className="text-2xl font-semibold text-purple-300 mb-2">Wat is Rewarble?</h2>
@@ -60,6 +62,8 @@ export default function Index()
         </p>
       </main>
 
+
+      {/* footer */}
       <footer className="bg-[#05051F] text-gray-500 text-center text-sm py-6">
         © {new Date().getFullYear()} Mechhive - by João Gessel
       </footer>

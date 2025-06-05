@@ -1,4 +1,7 @@
 import { Form, Link } from "@remix-run/react";
+import { users } from "~/PersLib/users";
+import { redirect, type ActionFunctionArgs } from "@remix-run/node";
+
 
 export default function SignIn() 
 {
@@ -26,6 +29,8 @@ export default function SignIn()
 
           {/* form */}
           <Form method="post" className="space-y-4 text-left">
+
+            {/* e-mail label */}
             <div>
               <label htmlFor="email" className="block text-sm text-gray-300 mb-1">
                 E-mailadres
@@ -39,6 +44,7 @@ export default function SignIn()
               />
             </div>
 
+            {/*  wachtwoord label */}
             <div>
               <label htmlFor="password" className="block text-sm text-gray-300 mb-1">
                 Wachtwoord
@@ -52,6 +58,7 @@ export default function SignIn()
               />
             </div>
 
+            {/* button */}
             <button
               type="submit"
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition"
@@ -65,4 +72,24 @@ export default function SignIn()
       </main>
     </div>
   );
+}
+
+
+//logica 
+export async function action({ request }: ActionFunctionArgs) 
+{
+  //haal formuliergegevens op
+  const formData = await request.formData();
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  //controleer of email + wachtwoord klopt met users.ts
+  const user = users.find(
+    (u) => u.email === email && u.password === password
+  );
+
+  //als gebruiker bestaat → redirect naar converterpagina
+  if (user) {
+    return redirect("/currency-converter");
+  }
 }
