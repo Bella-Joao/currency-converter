@@ -34,7 +34,7 @@ export function Layout({ children }: { children: React.ReactNode })
         <Meta />
         <Links />
       </head>
-      <body  className="min-h-screen flex flex-col bg-[#05051F] overflow-x-hidden">
+      <body className="min-h-screen flex flex-col bg-gradient-to-b from-[#6203FD] via-[#783FDB] to-[#8D76BD] overflow-x-hidden text-white">
         {children}
         <ScrollRestoration />
         <Scripts />
