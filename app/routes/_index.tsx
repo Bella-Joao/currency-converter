@@ -6,7 +6,8 @@ export default function Index() {
 
       {/* header */}
       <header className="flex justify-between items-center px-6 py-4">
-        {/* Logo links */}
+        
+        {/* Logo link */}
         <Link to="/" className="flex items-center gap-2">
           <img src="/logoMechhive.png" alt="Mechhive Logo" className="w-14 h-12" />
         </Link>
@@ -59,8 +60,6 @@ export default function Index() {
           Skine and Rewarble form a complete ecosystem. With Skine you buy a digital gift card. Through Rewarble you redeem it for whatever you want: games, money, or rewards. It’s fast, efficient, and fully digital.
         </p>
       </main>
-
-     
     </div>
   );
 }

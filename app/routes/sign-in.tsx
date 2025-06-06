@@ -6,15 +6,14 @@ import { redirect, type ActionFunctionArgs } from "@remix-run/node";
 export default function SignIn() 
 {
   return (
-    <div className="min-h-screen flex flex-col bg-[#0a0a23] text-white">
+    <div className="min-h-screen flex flex-col text-white">
 
       {/* header */}
-      <header className="px-6 py-4">
-        <Link
-          to="/"
-          className="text-xl font-bold text-blue-500 hover:text-blue-400 cursor-pointer transition"
-        >
-          Mechhive
+      <header className="flex justify-between items-center px-6 py-4">
+
+        {/* Logo link */}
+        <Link to="/" className="flex items-center gap-2">
+          <img src="/logoMechhive.png" alt="Mechhive Logo" className="w-14 h-12" />
         </Link>
       </header>
 
@@ -22,8 +21,8 @@ export default function SignIn()
       <main className="flex-grow flex items-center justify-center px-4">
 
         <div className="bg-[#0f172a] rounded-xl p-8 shadow-[0_0_25px_#3b82f6] border border-blue-600 w-full max-w-md text-center">
-          <h1 className="text-3xl font-bold text-blue-500 mb-2">Inloggen</h1>
-          <p className="text-gray-400 text-sm mb-6">
+          <h1 className="text-3xl font-bold mb-2">Inloggen</h1>
+          <p className="text-sm mb-6">
             Log in om toegang te krijgen tot de valuta converter
           </p>
 
@@ -61,7 +60,7 @@ export default function SignIn()
             {/* button */}
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition"
+              className="w-full bg-white hover:bg-[#650AF9] text-[#0F172A] hover:text-white font-semibold py-2 rounded transition"
             >
               Inloggen
             </button>
