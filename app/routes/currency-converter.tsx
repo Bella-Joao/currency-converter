@@ -1,7 +1,31 @@
-  import { Link, Form } from "@remix-run/react";
+// João van Gessel – Currency Converter pagina
+// Beschrijving: Toont een formulier waarmee gebruikers valuta kunnen omrekenen.
+// Haalt valutalijst op via de loader en voert omrekening uit via action.
+// Alleen toegankelijk na succesvolle login.
 
-export default function CurrencyConverter() 
-{
+
+//haal tools van remix op voor navigatie, formulier en API-data
+import { Link, Form, useLoaderData, useActionData } from "@remix-run/react";
+
+//logica importeren van perslib
+import { currencyLoader, currencyAction } from "~/PersLib/currency.server";
+
+
+//koppelen van loader en action van deze pagina aan de externe logica
+export const loader = currencyLoader;
+export const action = currencyAction;
+
+
+//pagina + convert functie
+export default function CurrencyConverter() {
+
+  //currencies uit de loader halen en in currencies zetten / resultaat van de conversie ophalen uit action
+  const { currencies } = useLoaderData<typeof loader>();
+  const actionData = useActionData<typeof action>();
+
+  //Kijken of de API nog werkt
+  console.log("Currencies uit loader:", currencies);
+
   return (
     <div className="min-h-screen flex flex-col items-center px-4 pt-6 text-white">
 
@@ -29,9 +53,12 @@ export default function CurrencyConverter()
         <div className="flex flex-col w-full sm:w-[320px]">
           <label className="text-white font-bold mb-1">Amount</label>
           <input
-            type="text"
+            name="amount"
+            type="number"
+            step="0.01"
             className="rounded-2xl px-6 py-4 text-xl bg-[#ecd9ff] text-black font-bold shadow-md focus:outline-none w-full"
-            defaultValue="1,00"
+            defaultValue={1.00}
+            required
           />
         </div>
 
@@ -39,9 +66,17 @@ export default function CurrencyConverter()
         <div className="flex flex-col w-full sm:w-[320px]">
           <label className="text-white font-bold mb-1">From</label>
           <select
+            name="from"
             className="rounded-2xl px-6 py-4 text-xl bg-[#ecd9ff] text-black font-bold shadow-md focus:outline-none w-full"
           >
-            <option value="USD">🇺🇸 USD - US Dollar</option>
+            {/*loop door elke valuta en maak er een <option> van voor de dropdown*/}
+            {Array.isArray(currencies) &&
+              currencies.map((currency: string) => (
+                <option key={currency} value={currency}>
+                  {currency}
+                </option>
+      ))}
+
           </select>
         </div>
 
@@ -56,9 +91,17 @@ export default function CurrencyConverter()
         <div className="flex flex-col w-full sm:w-[320px]">
           <label className="text-white font-bold mb-1">To</label>
           <select
+            name="to"
             className="rounded-2xl px-6 py-4 text-xl bg-[#ecd9ff] text-black font-bold shadow-md focus:outline-none w-full"
           >
-            <option value="EUR">🇪🇺 EUR - Euro</option>
+             {/*loop door elke valuta en maak er een <option> van voor de dropdown*/}
+            {Array.isArray(currencies) &&
+              currencies.map((currency: string) => (
+                <option key={currency} value={currency}>
+                  {currency}
+                </option>
+            ))}
+
           </select>
         </div>
       </div>
@@ -68,13 +111,16 @@ export default function CurrencyConverter()
         <div className="flex flex-col items-center sm:items-end sm:flex-row sm:justify-between w-full text-center sm:text-left">
           {/* Resultaattekst */}
           <div className="text-white text-left">
-            <p>
-              <strong>1.00 US Dollar =</strong>{" "}
-              <span className="text-2xl font-bold">0.91494421 Euros</span>
-            </p>
-            <p className="text-sm text-gray-100 mt-1">
-              1 EUR = 1.09296 USD
-            </p>
+            {actionData && (
+            <div className="text-white text-left">
+              <p>
+                <strong>{actionData.amount} {actionData.from} =</strong>{" "}
+                <span className="text-2xl font-bold">
+                  {actionData.result} {actionData.to}
+                </span>
+              </p>
+            </div>
+          )}
           </div>
 
           {/* Convert button */}
@@ -90,7 +136,7 @@ export default function CurrencyConverter()
 
       </Form>
     </div>
-
     </div>
+    
   );
 }

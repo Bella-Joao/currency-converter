@@ -1,3 +1,8 @@
+// João van Gessel – Sign-in pagina
+// Beschrijving: Laat de gebruiker inloggen met e-mail en wachtwoord.
+// Toegang is nodig om de valuta converter te gebruiken.
+
+
 import { Form, Link } from "@remix-run/react";
 import { users } from "~/PersLib/users";
 import { redirect, type ActionFunctionArgs } from "@remix-run/node";

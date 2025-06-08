@@ -1,3 +1,7 @@
+//João van Gessel – Indexpagina (homepage)
+// Beschrijving: Toont de introductie van de currency converter app
+// inclusief uitleg over Skine en Rewarble met links en layout.
+
 import { Link } from "@remix-run/react";
 
 export default function Index() {
