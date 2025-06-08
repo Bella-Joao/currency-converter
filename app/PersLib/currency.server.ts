@@ -16,8 +16,14 @@ const API_HOST = "currency-exchange.p.rapidapi.com";
 
 
 //loader functie (valuta lijst ophalen)
-export const currencyLoader: LoaderFunction = async () => 
+export const currencyLoader: LoaderFunction = async ({ request }) => 
     {
+
+        const url = new URL(request.url);
+        const from = url.searchParams.get("from");
+        const to = url.searchParams.get("to");
+        const amount = url.searchParams.get("amount");
+
         //verzoek
         const res = await fetch("https://currency-exchange.p.rapidapi.com/listquotes", 
             {
@@ -31,7 +37,7 @@ export const currencyLoader: LoaderFunction = async () =>
 
     //data omzetten / returnen
     const data = await res.json();
-    return json({ currencies: data });
+    return json({ currencies: data, from, to, amount });
 };
 
 

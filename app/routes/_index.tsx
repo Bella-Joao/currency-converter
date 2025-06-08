@@ -10,7 +10,6 @@ export default function Index() {
 
       {/* header */}
       <header className="flex justify-between items-center px-6 py-4">
-        
         {/* Logo link */}
         <Link to="/" className="flex items-center gap-2">
           <img src="/logoMechhive.png" alt="Mechhive Logo" className="w-14 h-12" />

@@ -11,6 +11,7 @@ import { Link, Form, useLoaderData, useActionData } from "@remix-run/react";
 import { currencyLoader, currencyAction } from "~/PersLib/currency.server";
 
 
+
 //koppelen van loader en action van deze pagina aan de externe logica
 export const loader = currencyLoader;
 export const action = currencyAction;
@@ -20,10 +21,10 @@ export const action = currencyAction;
 export default function CurrencyConverter() {
 
   //currencies uit de loader halen en in currencies zetten / resultaat van de conversie ophalen uit action
-  const { currencies } = useLoaderData<typeof loader>();
+  const { currencies, from, to, amount } = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
 
-  //Kijken of de API nog werkt
+  //Kijken of de API nog werkt (test)
   console.log("Currencies uit loader:", currencies);
 
   return (
@@ -42,7 +43,6 @@ export default function CurrencyConverter() {
 
 
      <div className="bg-gradient-to-b from-[#6203FD] via-[#783FDB] to-[#8D76BD] rounded-3xl shadow-xl px-6 py-20 w-full max-w-[1200px] mx-auto">
-
       <Form method="post" className="flex flex-col gap-6 w-full">
 
         {/* Rij 1: Amount, From, Arrow, To */}
@@ -57,7 +57,7 @@ export default function CurrencyConverter() {
             type="number"
             step="0.01"
             className="rounded-2xl px-6 py-4 text-xl bg-[#ecd9ff] text-black font-bold shadow-md focus:outline-none w-full"
-            defaultValue={1.00}
+            defaultValue={(amount || "1.00").replace(",", ".")}
             required
           />
         </div>
@@ -68,6 +68,7 @@ export default function CurrencyConverter() {
           <select
             name="from"
             className="rounded-2xl px-6 py-4 text-xl bg-[#ecd9ff] text-black font-bold shadow-md focus:outline-none w-full"
+            defaultValue={from || "USD"}
           >
             {/*loop door elke valuta en maak er een <option> van voor de dropdown*/}
             {Array.isArray(currencies) &&
@@ -93,6 +94,7 @@ export default function CurrencyConverter() {
           <select
             name="to"
             className="rounded-2xl px-6 py-4 text-xl bg-[#ecd9ff] text-black font-bold shadow-md focus:outline-none w-full"
+            defaultValue={to || "EUR"}
           >
              {/*loop door elke valuta en maak er een <option> van voor de dropdown*/}
             {Array.isArray(currencies) &&
