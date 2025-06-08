@@ -22,7 +22,8 @@ export default function CurrencyConverter()
       <Form method="post" className="flex flex-col gap-6 w-full">
 
         {/* Rij 1: Amount, From, Arrow, To */}
-        <div className="flex flex-wrap justify-between gap-2 w-full">
+        <div className="flex flex-wrap justify-between gap-2 w-full text-center sm:text-left sm:items-start sm:justify-between">
+
 
         {/* Amount */}
         <div className="flex flex-col w-full sm:w-[320px]">
@@ -45,7 +46,7 @@ export default function CurrencyConverter()
         </div>
 
         {/* Arrow */}
-        <div className="flex items-end pb-1">
+       <div className="flex justify-center w-full sm:w-auto sm:self-end pb-1">
           <div className="w-12 h-12 flex items-center justify-center rounded-full border border-white text-white text-3xl shadow bg-white/10">
             &#8646;
           </div>
@@ -64,8 +65,7 @@ export default function CurrencyConverter()
 
 
         {/* Rij 2: Resultaattekst + Convert-knop */}
-        <div className="flex flex-col sm:flex-row justify-between items-end w-full">
-
+        <div className="flex flex-col items-center sm:items-end sm:flex-row sm:justify-between w-full text-center sm:text-left">
           {/* Resultaattekst */}
           <div className="text-white text-left">
             <p>
