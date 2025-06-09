@@ -43,7 +43,9 @@ export default function CurrencyConverter() {
 
 
      <div className="bg-gradient-to-b from-[#6203FD] via-[#783FDB] to-[#8D76BD] rounded-3xl shadow-xl px-6 py-20 w-full max-w-[1200px] mx-auto">
-      <Form method="post" className="flex flex-col gap-6 w-full">
+
+      <Form method="get" className="flex flex-col gap-6 w-full">
+        
 
         {/* Rij 1: Amount, From, Arrow, To */}
         <div className="flex flex-wrap justify-between gap-2 w-full text-center sm:text-left sm:items-start sm:justify-between">

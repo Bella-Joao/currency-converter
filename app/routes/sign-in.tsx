@@ -6,10 +6,22 @@
 import { Form, Link } from "@remix-run/react";
 import { users } from "~/PersLib/users";
 import { redirect, type ActionFunctionArgs } from "@remix-run/node";
+import { useEffect } from "react";
+
 
 
 export default function SignIn() 
 {
+
+  useEffect(() => {
+  const script = document.createElement("script");
+  script.src = "https://www.google.com/recaptcha/api.js";
+  script.async = true;
+  script.defer = true;
+  document.body.appendChild(script);
+  }, []);
+
+
   return (
     <div className="min-h-screen flex flex-col text-white">
 
@@ -62,6 +74,9 @@ export default function SignIn()
               />
             </div>
 
+            {/* Google reCAPTCHA */}
+            <div className="g-recaptcha" data-sitekey="6Le4b1orAAAAAAPu4f76LPi3MlWgrnQjRnkolwCqu"></div>
+
             {/* button */}
             <button
               type="submit"
@@ -97,3 +112,5 @@ export async function action({ request }: ActionFunctionArgs)
     return redirect("/currency-converter");
   }
 }
+
+
