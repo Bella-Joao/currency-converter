@@ -75,7 +75,7 @@ export default function SignIn()
             </div>
 
             {/* Google reCAPTCHA */}
-            <div className="g-recaptcha" data-sitekey="6Le4b1orAAAAAAPu4f76LPi3MlWgrnQjRnkolwCqu"></div>
+            <div className="g-recaptcha" data-sitekey="6Le4b1orAAAAAPu4f76LPl3MIWgrnQjRnkolwCqu"></div>
 
             {/* button */}
             <button
