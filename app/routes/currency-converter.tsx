@@ -5,10 +5,14 @@
 
 
 //haal tools van remix op voor navigatie, formulier en API-data
-import { Link, Form, useLoaderData, useActionData } from "@remix-run/react";
+import { Link, Form, useLoaderData} from "@remix-run/react";
 
 //logica importeren van perslib
 import { currencyLoader, currencyAction } from "~/PersLib/currency.server";
+
+
+import { useNavigate } from "@remix-run/react";
+import { useEffect } from "react";
 
 
 
@@ -21,8 +25,8 @@ export const action = currencyAction;
 export default function CurrencyConverter() {
 
   //currencies uit de loader halen en in currencies zetten / resultaat van de conversie ophalen uit action
-  const { currencies, from, to, amount } = useLoaderData<typeof loader>();
-  const actionData = useActionData<typeof action>();
+  const { currencies, from, to, amount, result } = useLoaderData<typeof loader>();
+
 
   //Kijken of de API nog werkt (test)
   console.log("Currencies uit loader:", currencies);
@@ -44,7 +48,7 @@ export default function CurrencyConverter() {
 
      <div className="bg-gradient-to-b from-[#6203FD] via-[#783FDB] to-[#8D76BD] rounded-3xl shadow-xl px-6 py-20 w-full max-w-[1200px] mx-auto">
 
-      <Form method="get" className="flex flex-col gap-6 w-full">
+      <Form method="post" className="flex flex-col gap-6 w-full">
         
 
         {/* Rij 1: Amount, From, Arrow, To */}
@@ -115,16 +119,16 @@ export default function CurrencyConverter() {
         <div className="flex flex-col items-center sm:items-end sm:flex-row sm:justify-between w-full text-center sm:text-left">
           {/* Resultaattekst */}
           <div className="text-white text-left">
-            {actionData && (
-            <div className="text-white text-left">
-              <p>
-                <strong>{actionData.amount} {actionData.from} =</strong>{" "}
-                <span className="text-2xl font-bold">
-                  {actionData.result} {actionData.to}
-                </span>
-              </p>
-            </div>
-          )}
+            {result && (
+              <div className="text-white text-left">
+                <p>
+                  <strong>{amount} {from} =</strong>{" "}
+                  <span className="text-2xl font-bold">
+                    {result} {to}
+                  </span>
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Convert button */}
