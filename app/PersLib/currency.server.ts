@@ -4,27 +4,28 @@
 // Beide functies gebruiken fetch met RapidAPI sleutel en host.
 
 
-// json functie importeren om data terug te sturen naar de browser
-import { json } from "@remix-run/node";
+// json functie importeren om data terug te sturen naar de browser en de redirect functie importeren
+import { json, redirect } from "@remix-run/node";
 
 //2 types importen voor de aankomende functies (loader & action)
 import type { LoaderFunction, ActionFunction } from "@remix-run/node";
+
 
 //connectie maken met de API (key en host)
 const API_KEY = "4c85a9f7camshf7c311beb85501cp15658bjsn398af9a73188";
 const API_HOST = "currency-exchange.p.rapidapi.com";
 
-import { redirect } from "@remix-run/node"; 
 
 //loader functie (valuta lijst ophalen)
 export const currencyLoader: LoaderFunction = async ({ request }) => 
     {
-
+        //url paramaters ophalen
         const url = new URL(request.url);
         const from = url.searchParams.get("from");
         const to = url.searchParams.get("to");
         const amount = url.searchParams.get("amount");
 
+        //alle valuta's ophalen
         const res = await fetch("https://currency-exchange.p.rapidapi.com/listquotes", {
             method: "GET",
             headers: 
@@ -34,9 +35,10 @@ export const currencyLoader: LoaderFunction = async ({ request }) =>
             }
     });
 
+  //valuta's opslaan
   const currencies = await res.json();
 
-  // berekening opnieuw uitvoeren als params aanwezig zijn
+  //berekening opnieuw uitvoeren als parameters aanwezig zijn
   let result = null;
   if (from && to && amount) {
     const response = await fetch(
@@ -52,13 +54,14 @@ export const currencyLoader: LoaderFunction = async ({ request }) =>
     result = await response.text();
   }
 
+  //retourneren van de lijst
   return json({ currencies, from, to, amount, result });
 };
 
 
 
 //convert functie 
-// action → verwerkt formulier en redirect naar loader-URL
+// action functie die verwerkt het formulier en redirect naar loader-URL
 export const currencyAction: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const amount = formData.get("amount");

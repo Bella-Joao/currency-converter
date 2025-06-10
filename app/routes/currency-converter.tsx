@@ -10,15 +10,11 @@ import { Link, Form, useLoaderData} from "@remix-run/react";
 //logica importeren van perslib
 import { currencyLoader, currencyAction } from "~/PersLib/currency.server";
 
-
-import { useNavigate } from "@remix-run/react";
-import { useEffect } from "react";
-
-
-
 //koppelen van loader en action van deze pagina aan de externe logica
 export const loader = currencyLoader;
 export const action = currencyAction;
+
+
 
 
 //pagina + convert functie
@@ -45,8 +41,8 @@ export default function CurrencyConverter() {
       <h1 className="text-2xl font-bold mb-1">Currency Converter</h1>
       <p className="text-sm text-white mb-6">Check live foreign currency exchange rates</p>
 
-
      <div className="bg-gradient-to-b from-[#6203FD] via-[#783FDB] to-[#8D76BD] rounded-3xl shadow-xl px-6 py-20 w-full max-w-[1200px] mx-auto">
+
 
       <Form method="post" className="flex flex-col gap-6 w-full">
         
@@ -63,6 +59,7 @@ export default function CurrencyConverter() {
             type="number"
             step="0.01"
             className="rounded-2xl px-6 py-4 text-xl bg-[#ecd9ff] text-black font-bold shadow-md focus:outline-none w-full"
+            //bij reload blijft de waarde staan
             defaultValue={(amount || "1.00").replace(",", ".")}
             required
           />

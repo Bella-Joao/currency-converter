@@ -3,6 +3,7 @@
 // Toegang is nodig om de valuta converter te gebruiken.
 
 
+//importeer de benodigde tools
 import { Form, Link } from "@remix-run/react";
 import { users } from "~/PersLib/users";
 import { redirect, type ActionFunctionArgs } from "@remix-run/node";
@@ -13,12 +14,14 @@ import { useEffect } from "react";
 export default function SignIn() 
 {
 
-  useEffect(() => {
-  const script = document.createElement("script");
-  script.src = "https://www.google.com/recaptcha/api.js";
-  script.async = true;
-  script.defer = true;
-  document.body.appendChild(script);
+  //reCaptcha script laden
+  useEffect(() => 
+  {
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
   }, []);
 
 
@@ -38,6 +41,7 @@ export default function SignIn()
       <main className="flex-grow flex items-center justify-center px-4">
 
         <div className="bg-[#0f172a] rounded-xl p-8 shadow-[0_0_25px_#3b82f6] border border-blue-600 w-full max-w-md text-center">
+
           <h1 className="text-3xl font-bold mb-2">Inloggen</h1>
           <p className="text-sm mb-6">
             Log in om toegang te krijgen tot de valuta converter
@@ -74,9 +78,11 @@ export default function SignIn()
               />
             </div>
 
-            {/* Google reCAPTCHA */}
+            {/* google reCAPTCHA */}
+            <div className="flex justify-center">
             <div className="g-recaptcha" data-sitekey="6Le4b1orAAAAAPu4f76LPl3MIWgrnQjRnkolwCqu"></div> 
-      
+            </div>
+
             {/* button */}
             <button
               type="submit"

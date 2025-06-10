@@ -2,6 +2,7 @@
 // Beschrijving: Toont de introductie van de currency converter app
 // inclusief uitleg over Skine en Rewarble met links en layout.
 
+//tool voor de navigatie
 import { Link } from "@remix-run/react";
 
 export default function Index() {
@@ -15,6 +16,7 @@ export default function Index() {
           <img src="/logoMechhive.png" alt="Mechhive Logo" className="w-14 h-12" />
         </Link>
 
+        {/* nav */}
         <nav className="flex items-center gap-6">
           <a href="https://skine.com" target="_blank" rel="noreferrer" className="text-sm hover:underline">Skine</a>
           <a href="https://rewarble.com" target="_blank" rel="noreferrer" className="text-sm hover:underline">Rewarble</a>
